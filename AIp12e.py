@@ -48,8 +48,13 @@ def handle_message(event):
     elif(text=="機器人"):
         reply_text = "有！我是機器人，在！"
     elif(text=="讀取資料"):
-        content = pd.read_csv('https://raw.githubusercontent.com/andynavy23/1081AI/master/test.csv',sep=",")
-        reply_text = content
+    # 開啟 CSV 檔案
+    with open('https://raw.githubusercontent.com/andynavy23/1081AI/master/test.csv', newline='') as csvfile:
+        rows = csv.reader(csvfile)
+        for row in rows:
+            reply_text = row
+            message = TextSendMessage(reply_text)
+            line_bot_api.reply_message(event.reply_token, message)
     else:  # 如果非以上的選項，就會學你說話
         reply_text = text
     message = TextSendMessage(reply_text)
