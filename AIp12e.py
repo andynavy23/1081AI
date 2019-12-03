@@ -50,7 +50,8 @@ def handle_message(event):
     elif(text=="讀取資料"):
         with open('test.csv', newline='') as csvfile:
             rows = csv.reader(csvfile)
-        reply_text = " ".join(rows)
+            content = " ".join(rows)
+        reply_text = content
     else:  # 如果非以上的選項，就會學你說話
         reply_text = text
     message = TextSendMessage(reply_text)
