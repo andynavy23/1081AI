@@ -4,7 +4,7 @@ from flask import Flask, request, abort
 from linebot import ( LineBotApi, WebhookHandler )
 from linebot.exceptions import( InvalidSignatureError )
 from linebot.models import *
-import csv
+import pandas as pd
 
 ###=== (5.2) 程式宣告 ===###  
 app = Flask(__name__)  # __name__ 代表目前執行的模組
@@ -48,12 +48,8 @@ def handle_message(event):
     elif(text=="機器人"):
         reply_text = "有！我是機器人，在！"
     elif(text=="讀取資料"):
-        """
-        with open('test.csv', newline='') as csvfile:
-            rows = csv.reader(csvfile)
-            content = " ".join(rows)
-        """
-        reply_text = "dd"
+        content = pd.read_csv('https://raw.githubusercontent.com/andynavy23/1081AI/master/test.csv',sep=",")
+        reply_text = content
     else:  # 如果非以上的選項，就會學你說話
         reply_text = text
     message = TextSendMessage(reply_text)
