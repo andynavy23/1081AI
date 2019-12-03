@@ -51,7 +51,7 @@ def handle_message(event):
         with open('test.csv', newline='') as csvfile:
             rows = csv.reader(csvfile)
             content = " ".join(rows)
-        reply_text = content
+        reply_text = 'dd'
     else:  # 如果非以上的選項，就會學你說話
         reply_text = text
     message = TextSendMessage(reply_text)
